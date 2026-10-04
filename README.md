@@ -2,6 +2,7 @@
 
 纯 HTML / CSS / JavaScript 静态设计预览，无登录、支付、订单、用户数据收集或在线编辑后台。
 品牌名已确定，其余内容以“后期补充”占位。茶器插画为装饰，不是门店或真实商品照片。
+https://qianpengma.github.io/baosheng-tea/
 
 ## 本地查看
 双击 index.html，或在文件目录执行 `python -m http.server 8000` 后打开 http://localhost:8000。
