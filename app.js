@@ -14,7 +14,31 @@ function productCard(item,featured=false){
   if(!featured)card.append(el('p','price-preview','价格：'+item.price));
   card.append(el('span','card-more','查看产品介绍 ↗'));return card;
 }
-fillMenu('product-menu',data.products,'products');fillMenu('knowledge-menu',data.articles,'articles');
+function fillKnowledgeMenu(){const target=document.getElementById('knowledge-menu');if(!target)return;data.articles.forEach(item=>target.append(itemLink(item,'articles')))}
+function fillProductMenu(){
+  const target=document.getElementById('product-menu');if(!target)return;target.classList.add('product-menu-tree');
+  const preferred=['新会陈皮','武夷岩茶','福鼎白茶','绿茶','柑普茶','红茶'];
+  const categories=uniq(data.products.map(x=>x.category)).sort((a,b)=>{const ai=preferred.indexOf(a),bi=preferred.indexOf(b);return(ai<0?99:ai)-(bi<0?99:bi)});
+  categories.forEach(category=>{
+    const group=el('div','menu-category'),row=el('div','menu-category-row');
+    const label=category==='新会陈皮'?'陈皮':category;
+    const a=el('a','menu-category-link',label);a.href='products.html?category='+encodeURIComponent(category);row.append(a);
+    if(category==='新会陈皮'){
+      const toggle=el('button','menu-category-toggle','›');toggle.type='button';toggle.setAttribute('aria-label','显示陈皮年份');toggle.setAttribute('aria-expanded','false');row.append(toggle);
+      const years=uniq(data.products.filter(x=>x.category==='新会陈皮'&&/^\\d{4}$/.test(x.year)).map(x=>x.year)).sort((a,b)=>Number(a)-Number(b));
+      const submenu=el('div','year-submenu');submenu.append(el('span','submenu-title','按年份'));
+      years.forEach(year=>{const y=el('a','',year+'年');y.href='products.html?category='+encodeURIComponent(category)+'&year='+encodeURIComponent(year);submenu.append(y)});
+      const all=el('a','submenu-all','查看全部陈皮 ↗');all.href='products.html?category='+encodeURIComponent(category);submenu.append(all);
+      group.append(row,submenu);
+      const setOpen=open=>{group.classList.toggle('submenu-open',open);toggle.setAttribute('aria-expanded',open?'true':'false')};
+      group.addEventListener('mouseenter',()=>setOpen(true));group.addEventListener('mouseleave',()=>setOpen(false));
+      group.addEventListener('focusin',()=>setOpen(true));group.addEventListener('focusout',e=>{if(!group.contains(e.relatedTarget))setOpen(false)});
+      toggle.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();setOpen(!group.classList.contains('submenu-open'))});
+    }else group.append(row);
+    target.append(group);
+  });
+}
+fillProductMenu();fillKnowledgeMenu();
 
 const menus=[...document.querySelectorAll('.nav-group')];
 menus.forEach(menu=>menu.addEventListener('toggle',()=>{if(menu.open)menus.forEach(other=>{if(other!==menu)other.open=false})}));
@@ -32,13 +56,14 @@ if(kind==='products'){
   const categoryBox=document.getElementById('category-filters'),yearBox=document.getElementById('year-filters'),regionBox=document.getElementById('region-filters');
   const yearBlock=document.getElementById('year-filter-block'),regionBlock=document.getElementById('region-filter-block'),clear=document.getElementById('clear-filters'),title=document.getElementById('catalog-title');
   const state={category:'全部',year:'全部',region:'全部'};
-  const urlCategory=new URLSearchParams(location.search).get('category');
+  const params=new URLSearchParams(location.search),urlCategory=params.get('category'),urlYear=params.get('year');
   if(urlCategory&&uniq(items.map(x=>x.category)).includes(urlCategory))state.category=urlCategory;
+  if(state.category==='新会陈皮'&&urlYear&&uniq(items.filter(x=>x.category==='新会陈皮').map(x=>x.year)).includes(urlYear))state.year=urlYear;
 
   function chip(label,active,onClick){const b=el('button','filter-chip'+(active?' active':''),label);b.type='button';b.setAttribute('aria-pressed',active?'true':'false');b.addEventListener('click',onClick);return b}
   function renderFilterControls(){
     categoryBox.replaceChildren();
-    ['全部',...uniq(items.map(x=>x.category))].forEach(value=>categoryBox.append(chip(value,state.category===value,()=>{state.category=value;state.year='全部';state.region='全部';render()})));
+    ['全部',...uniq(items.map(x=>x.category))].forEach(value=>categoryBox.append(chip(value==='新会陈皮'?'陈皮':value,state.category===value,()=>{state.category=value;state.year='全部';state.region='全部';render()})));
     const isChenpi=state.category==='新会陈皮';yearBlock.hidden=!isChenpi;regionBlock.hidden=!isChenpi;
     yearBox.replaceChildren();regionBox.replaceChildren();
     if(isChenpi){
@@ -63,7 +88,7 @@ if(kind==='products'){
     found.forEach(item=>{list.append(itemLink(item,'products'));cards.append(productCard(item,false))});
     document.getElementById('catalog-count').textContent='共 '+found.length+' 项';
     document.getElementById('empty-result').hidden=found.length>0;
-    title.textContent=state.category==='全部'?'全部产品':state.category+(state.year!=='全部'?' · '+state.year:'');
+    title.textContent=state.category==='全部'?'全部产品':(state.category==='新会陈皮'?'陈皮':state.category)+(state.year!=='全部'?' · '+state.year+'年':'');
   }
   search.addEventListener('input',render);
   clear.addEventListener('click',()=>{state.category='全部';state.year='全部';state.region='全部';search.value='';history.replaceState(null,'',location.pathname);render()});
