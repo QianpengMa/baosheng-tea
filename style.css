@@ -330,11 +330,13 @@
 .nav-dropdown .menu-category-link{flex:1;border-bottom:0;padding:10px 14px}
 .menu-category-toggle{border:0;background:transparent;color:#817253;width:38px;height:38px;font-size:20px;line-height:1;transition:transform .2s ease}
 .menu-category.submenu-open .menu-category-toggle{transform:rotate(90deg)}
-.year-submenu{display:none;position:absolute;left:calc(100% + 8px);top:-10px;width:180px;padding:10px;background:#faf7ef;border:1px solid var(--line);box-shadow:0 15px 34px rgba(34,58,45,.13);z-index:12}
-.menu-category.submenu-open .year-submenu{display:block}
+.year-submenu{display:none;position:absolute;left:calc(100% - 1px);top:0;width:180px;padding:10px;background:#faf7ef;border:1px solid var(--line);box-shadow:0 15px 34px rgba(34,58,45,.13);z-index:12}
+.year-submenu:before{content:"";position:absolute;left:-12px;top:0;width:12px;height:100%;background:transparent}
+.menu-category.submenu-open .year-submenu,.menu-category:hover .year-submenu,.menu-category:focus-within .year-submenu{display:block}
 .year-submenu .submenu-title{display:block;padding:6px 12px 8px;font-size:9px;letter-spacing:2px;color:#9b8055;border-bottom:1px solid var(--line)}
-.nav-dropdown .year-submenu a{padding:8px 12px;font-size:12px}
-.nav-dropdown .year-submenu .submenu-all{color:#8c6b42;font-size:11px}
+.nav-dropdown .year-submenu a{padding:9px 12px;font-size:12px;white-space:nowrap}
+.nav-dropdown .year-submenu a:hover{background:#eef1e7;color:#174d3e}
+.nav-dropdown .year-submenu .submenu-all{color:#8c6b42;font-size:11px;border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
 
 @media(max-width:900px){
   .brand-hero{padding:42px 4% 58px}
