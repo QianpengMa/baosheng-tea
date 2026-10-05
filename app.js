@@ -18,23 +18,26 @@ function fillKnowledgeMenu(){const target=document.getElementById('knowledge-men
 function fillProductMenu(){
   const target=document.getElementById('product-menu');if(!target)return;target.classList.add('product-menu-tree');
   const preferred=['新会陈皮','武夷岩茶','福鼎白茶','绿茶','柑普茶','红茶'];
-  const categories=uniq(data.products.map(x=>x.category)).sort((a,b)=>{const ai=preferred.indexOf(a),bi=preferred.indexOf(b);return(ai<0?99:ai)-(bi<0?99:bi)});
+  const categories=uniq(data.products.map(x=>x.category)).sort((x,y)=>{const xi=preferred.indexOf(x),yi=preferred.indexOf(y);return(xi<0?99:xi)-(yi<0?99:yi)});
   categories.forEach(category=>{
     const group=el('div','menu-category'),row=el('div','menu-category-row');
     const label=category==='新会陈皮'?'陈皮':category;
-    const a=el('a','menu-category-link',label);a.href='products.html?category='+encodeURIComponent(category);row.append(a);
     if(category==='新会陈皮'){
-      const toggle=el('button','menu-category-toggle','›');toggle.type='button';toggle.setAttribute('aria-label','显示陈皮年份');toggle.setAttribute('aria-expanded','false');row.append(toggle);
-      const years=['2016','2018'];
-      const submenu=el('div','year-submenu');submenu.append(el('span','submenu-title','陈皮年份'));
-      years.forEach(year=>{const y=el('a','',year);y.href='products.html?category='+encodeURIComponent(category)+'&year='+encodeURIComponent(year);submenu.append(y)});
+      const trigger=el('button','menu-category-link chenpi-trigger',label);trigger.type='button';trigger.setAttribute('aria-expanded','false');
+      const arrow=el('span','menu-category-arrow','⌄');trigger.append(arrow);row.append(trigger);
+      const submenu=el('div','year-submenu');submenu.append(el('span','submenu-title','选择年份'));
+      [['2016','2016年'],['2018','2018年']].forEach(([year,text])=>{const y=el('a','',text);y.href='products.html?category='+encodeURIComponent(category)+'&year='+year;submenu.append(y)});
       const all=el('a','submenu-all','查看全部');all.href='products.html?category='+encodeURIComponent(category);submenu.append(all);
       group.append(row,submenu);
-      const setOpen=open=>{group.classList.toggle('submenu-open',open);toggle.setAttribute('aria-expanded',open?'true':'false')};
-      group.addEventListener('mouseenter',()=>setOpen(true));group.addEventListener('mouseleave',()=>setOpen(false));
-      group.addEventListener('focusin',()=>setOpen(true));group.addEventListener('focusout',e=>{if(!group.contains(e.relatedTarget))setOpen(false)});
-      toggle.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();setOpen(!group.classList.contains('submenu-open'))});
-    }else group.append(row);
+      let pinned=false;
+      const setOpen=open=>{group.classList.toggle('submenu-open',open);trigger.setAttribute('aria-expanded',open?'true':'false')};
+      group.addEventListener('mouseenter',()=>setOpen(true));
+      group.addEventListener('mouseleave',()=>{if(!pinned)setOpen(false)});
+      trigger.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();pinned=!pinned;setOpen(pinned)});
+      submenu.addEventListener('click',e=>e.stopPropagation());
+    }else{
+      const link=el('a','menu-category-link',label);link.href='products.html?category='+encodeURIComponent(category);row.append(link);group.append(row);
+    }
     target.append(group);
   });
 }
