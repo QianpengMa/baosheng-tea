@@ -1,11 +1,81 @@
-// 所有条目均为占位示例。增加产品/文章时，复制一条并使用唯一、固定的 id。
-// name、description、price、specification、origin、brewing、body 可由茶庄确认后填写。
+// 修改此文件可更新产品与文章。产品 id 请保持唯一；图片路径相对于网站根目录。
 window.TEA_SITE = {
-  products: Array.from({length: 6}, (_, i) => ({
-    id: String(i + 1), name: '产品' + (i + 1), description: '后期补充',
-    price: '后期补充', specification: '后期补充', origin: '后期补充', brewing: '后期补充'
-  })),
-  articles: Array.from({length: 6}, (_, i) => ({
-    id: String(i + 1), name: '茶叶知识' + (i + 1), description: '后期补充', body: '后期补充'
-  }))
+  "products": [
+    {
+      "id": "1",
+      "name": "新会陈皮礼盒",
+      "image": "assets/chenpi-gift.jpg",
+      "gallery": [],
+      "description": "新会陈皮礼盒实拍。详细产品介绍后期补充。",
+      "price": "后期补充",
+      "specification": "后期补充",
+      "origin": "后期补充",
+      "brewing": "后期补充"
+    },
+    {
+      "id": "2",
+      "name": "柑普茶",
+      "image": "assets/ganpu.jpg",
+      "gallery": [
+        "assets/ganpu-open.jpg",
+        "assets/tea-cup.jpg"
+      ],
+      "description": "柑普茶产品与茶汤实拍。详细产品介绍后期补充。",
+      "price": "后期补充",
+      "specification": "后期补充",
+      "origin": "后期补充",
+      "brewing": "后期补充"
+    },
+    {
+      "id": "3",
+      "name": "柑普茶（罐装）",
+      "image": "assets/ganpu-jar.jpg",
+      "gallery": [
+        "assets/ganpu-wrapped.jpg"
+      ],
+      "description": "罐装与独立包装实拍。详细产品介绍后期补充。",
+      "price": "后期补充",
+      "specification": "后期补充",
+      "origin": "后期补充",
+      "brewing": "后期补充"
+    }
+  ],
+  "articles": [
+    {
+      "id": "1",
+      "name": "茶叶知识1",
+      "description": "后期补充",
+      "body": "后期补充"
+    },
+    {
+      "id": "2",
+      "name": "茶叶知识2",
+      "description": "后期补充",
+      "body": "后期补充"
+    },
+    {
+      "id": "3",
+      "name": "茶叶知识3",
+      "description": "后期补充",
+      "body": "后期补充"
+    },
+    {
+      "id": "4",
+      "name": "茶叶知识4",
+      "description": "后期补充",
+      "body": "后期补充"
+    },
+    {
+      "id": "5",
+      "name": "茶叶知识5",
+      "description": "后期补充",
+      "body": "后期补充"
+    },
+    {
+      "id": "6",
+      "name": "茶叶知识6",
+      "description": "后期补充",
+      "body": "后期补充"
+    }
+  ]
 };
