@@ -352,3 +352,48 @@
   .menu-category.submenu-open{padding-bottom:138px}
   .menu-category.submenu-open .year-submenu{top:42px}
 }
+
+
+/* ===== v6: stable Chenpi year menu + warehouse photos + dual contacts ===== */
+.product-menu-tree .menu-category{position:relative}
+.product-menu-tree .menu-category-row{position:relative;z-index:2}
+.product-menu-tree .chenpi-trigger{
+  width:100%;border:0;background:transparent;color:inherit;text-align:left;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:10px 14px;cursor:pointer
+}
+.product-menu-tree .chenpi-trigger:hover{background:#eef1e7;color:#174d3e}
+.menu-category-arrow{font-size:13px;transition:transform .18s ease}
+.menu-category.submenu-open .menu-category-arrow{transform:rotate(180deg)}
+.product-menu-tree .year-submenu{
+  position:static!important;left:auto!important;top:auto!important;width:100%!important;
+  padding:4px 8px 9px 18px!important;margin:0!important;border:0!important;
+  border-top:1px solid #e2e4da!important;box-shadow:none!important;background:#f7f4eb!important;
+  display:none
+}
+.product-menu-tree .year-submenu:before{display:none!important}
+.product-menu-tree .menu-category.submenu-open .year-submenu,
+.product-menu-tree .menu-category:hover .year-submenu,
+.product-menu-tree .menu-category:focus-within .year-submenu{display:block!important}
+.product-menu-tree .year-submenu .submenu-title{padding:6px 10px 5px}
+.product-menu-tree .year-submenu a{display:block;padding:8px 10px!important}
+.product-menu-tree .year-submenu .submenu-all{margin-top:2px}
+@media(max-width:640px){
+  .product-menu-tree .menu-category.submenu-open{padding-bottom:0!important}
+  .product-menu-tree .menu-category.submenu-open .year-submenu{top:auto!important}
+}
+.warehouse-photo{margin:0;position:relative;overflow:hidden;background:#e9e6dc;min-height:360px}
+.warehouse-photo img{display:block;width:100%;height:100%;min-height:360px;aspect-ratio:4/3;object-fit:cover;transition:transform .45s ease}
+.warehouse-photo:hover img{transform:scale(1.025)}
+.warehouse-photo figcaption{position:absolute;left:18px;right:18px;bottom:18px;padding:11px 14px;background:rgba(25,54,43,.88);color:#f4eddc;font-size:11px;letter-spacing:.08em;backdrop-filter:blur(5px)}
+.warehouse-photo figcaption span{color:#d8bd79;margin-right:8px}
+.hero-phone-pair,.contact-phones{display:inline-flex;gap:14px;flex-wrap:wrap}
+.hero-phone-pair a,.contact-phones a{white-space:nowrap}
+.contact-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.contact-buttons .button{margin:0}
+.button-outline{background:transparent!important;color:var(--ink)!important;border:1px solid #9eaa99}
+.button-outline:hover{background:var(--ink)!important;color:white!important}
+@media(max-width:640px){
+  .warehouse-photo,.warehouse-photo img{min-height:260px}
+  .hero-phone-pair{justify-content:center}
+}
