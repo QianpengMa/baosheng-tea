@@ -70,3 +70,215 @@
   .filter-chip{font-size:10px;padding:6px 8px}
   .catalog-main .section-head{flex-direction:row;align-items:end}
 }
+
+
+/* ===== 2026-10-05 homepage hero redesign ===== */
+.brand-hero{
+  max-width:1440px;
+  margin:0 auto;
+  padding:42px 5.5% 82px;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(223,195,125,.12),transparent 30%),
+    linear-gradient(180deg,#fbf8f0 0%,#f5f1e6 100%);
+  border-bottom:1px solid var(--line);
+}
+.brand-hero-card{
+  max-width:1180px;
+  min-height:590px;
+  margin:0 auto;
+  padding:54px 72px 42px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px solid #d4c8aa;
+  box-shadow:inset 0 0 0 8px #faf7ef,0 24px 60px rgba(42,66,53,.06);
+  background:
+    linear-gradient(90deg,transparent 0 49.85%,rgba(172,148,95,.12) 49.85% 50.15%,transparent 50.15% 100%),
+    rgba(250,247,239,.9);
+  overflow:hidden;
+}
+.brand-hero-card:before,
+.brand-hero-card:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border:1px solid rgba(167,138,72,.13);
+  border-radius:50%;
+}
+.brand-hero-card:before{left:-92px;top:92px}
+.brand-hero-card:after{right:-92px;bottom:78px}
+.hero-corner{
+  position:absolute;
+  width:42px;
+  height:42px;
+  opacity:.85;
+}
+.hero-corner:before,.hero-corner:after{content:"";position:absolute;background:#a88b4c}
+.hero-corner:before{width:42px;height:1px}
+.hero-corner:after{width:1px;height:42px}
+.hero-corner-tl{top:20px;left:20px}
+.hero-corner-tr{top:20px;right:20px;transform:scaleX(-1)}
+.hero-corner-bl{bottom:20px;left:20px;transform:scaleY(-1)}
+.hero-corner-br{bottom:20px;right:20px;transform:scale(-1)}
+.hero-kicker{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  color:#7d826f;
+  font-size:9px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+}
+.hero-kicker i{display:block;width:46px;height:1px;background:#b49a62}
+.hero-seal-large{
+  width:58px;
+  height:58px;
+  margin:24px 0 26px;
+  border:1px solid #a88246;
+  color:#986f35;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  place-items:center;
+  font:22px/1 var(--serif);
+  box-shadow:inset 0 0 0 4px #f5efe1;
+  transform:rotate(-1.5deg);
+}
+.hero-seal-large span:first-child{border-right:1px solid #c8b58f;height:70%;display:flex;align-items:center;padding-right:5px}
+.hero-seal-large span:last-child{padding-left:1px}
+.brand-title{
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.14em;
+  font:clamp(58px,7.5vw,104px)/1.08 var(--serif);
+  letter-spacing:.12em;
+  color:#173f34;
+}
+.brand-title span{font:inherit;letter-spacing:inherit}
+.brand-title-accent{
+  color:#9b773d;
+  position:relative;
+  padding:0 .06em .06em .12em;
+}
+.brand-title-accent:after{
+  content:"";
+  position:absolute;
+  left:4%;
+  right:-2%;
+  bottom:-2px;
+  height:5px;
+  background:linear-gradient(90deg,transparent,#c8a85f 16%,#c8a85f 84%,transparent);
+  opacity:.72;
+}
+.brand-title-en{
+  margin:22px 0 0;
+  color:#879084;
+  font-size:10px;
+  letter-spacing:.48em;
+}
+.tea-ornament{
+  width:210px;
+  height:34px;
+  margin:30px 0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+.tea-ornament:before,.tea-ornament:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#b8aa86)}
+.tea-ornament:after{transform:scaleX(-1)}
+.tea-ornament span{
+  width:9px;height:9px;
+  border:1px solid #a78951;
+  transform:rotate(45deg);
+}
+.tea-ornament i{
+  width:16px;height:8px;
+  border:1px solid #8c9a83;
+  border-radius:100% 0 100% 0;
+  display:block;
+}
+.tea-ornament i:first-child{transform:rotate(26deg)}
+.tea-ornament i:last-child{transform:scaleX(-1) rotate(26deg)}
+.brand-specialties{
+  margin:0;
+  font:17px var(--serif);
+  letter-spacing:.22em;
+  color:#536154;
+}
+.brand-specialties b{font-weight:400;color:#a98445;margin:0 8px}
+.brand-slogan{
+  margin:12px 0 30px;
+  font:23px var(--serif);
+  letter-spacing:.12em;
+  color:#8e6d45;
+}
+.brand-hero .hero-actions{margin-bottom:34px}
+.hero-secondary{
+  min-width:172px;
+  padding:13px 4px;
+  font-size:12px;
+  border-bottom:1px solid #839181;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:26px;
+}
+.hero-secondary:hover{color:#9b773d;border-color:#9b773d}
+.hero-contact-strip{
+  width:min(760px,100%);
+  padding-top:18px;
+  border-top:1px solid #d9d6c9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:36px;
+  flex-wrap:wrap;
+  font-size:10px;
+  letter-spacing:.08em;
+  color:#7b857b;
+}
+.hero-contact-strip a{
+  color:#174d3e;
+  font-weight:600;
+  border-bottom:1px solid #b9aa82;
+  padding-bottom:2px;
+}
+.hero-contact-strip a:hover{color:#9a7440}
+
+@media(max-width:900px){
+  .brand-hero{padding:30px 4% 58px}
+  .brand-hero-card{padding:48px 42px 36px;min-height:540px}
+  .brand-title{font-size:clamp(52px,9vw,76px)}
+}
+@media(max-width:640px){
+  .brand-hero{padding:20px 3.5% 40px}
+  .brand-hero-card{padding:38px 18px 28px;min-height:510px;box-shadow:inset 0 0 0 5px #faf7ef}
+  .hero-corner{width:28px;height:28px}
+  .hero-corner:before{width:28px}
+  .hero-corner:after{height:28px}
+  .hero-corner-tl{top:13px;left:13px}
+  .hero-corner-tr{top:13px;right:13px}
+  .hero-corner-bl{bottom:13px;left:13px}
+  .hero-corner-br{bottom:13px;right:13px}
+  .hero-kicker{gap:9px;font-size:7px;letter-spacing:.18em}
+  .hero-kicker i{width:24px}
+  .hero-seal-large{width:50px;height:50px;margin:20px 0 22px;font-size:19px}
+  .brand-title{font-size:clamp(42px,12vw,58px);gap:.08em;letter-spacing:.07em;white-space:nowrap}
+  .brand-title-en{font-size:8px;letter-spacing:.24em;margin-top:16px}
+  .tea-ornament{width:150px;margin:23px 0 14px;gap:10px}
+  .brand-specialties{font-size:13px;letter-spacing:.08em}
+  .brand-specialties b{margin:0 3px}
+  .brand-slogan{font-size:19px;margin:10px 0 25px}
+  .brand-hero .hero-actions{gap:14px;margin-bottom:28px}
+  .brand-hero .button{padding:12px 16px;gap:24px}
+  .hero-secondary{min-width:150px}
+  .hero-contact-strip{gap:8px 18px;line-height:1.7}
+  .brand-hero-card:before,.brand-hero-card:after{display:none}
+}
