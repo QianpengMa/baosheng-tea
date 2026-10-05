@@ -1,0 +1,25 @@
+name: Build downloadable website package
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - ".github/workflows/package-site.yml"
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create website ZIP
+        run: |
+          zip -r baosheng-tea-complete.zip . -x ".git/*" ".github/*" "baosheng-tea-complete.zip"
+      - name: Upload website package
+        uses: actions/upload-artifact@v4
+        with:
+          name: baosheng-tea-complete
+          path: baosheng-tea-complete.zip
+          if-no-files-found: error
+          retention-days: 7
